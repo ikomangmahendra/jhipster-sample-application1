@@ -1,0 +1,36 @@
+{
+  "name": "Gudang",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "purchase",
+      "otherEntityRelationshipName": "warehouse",
+      "relationshipName": "purchase"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "sales",
+      "otherEntityRelationshipName": "warehouse",
+      "relationshipName": "sales"
+    }
+  ],
+  "changelogDate": "20201205154825",
+  "entityTableName": "gudang",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

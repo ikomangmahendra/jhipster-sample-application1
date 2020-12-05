@@ -47,6 +47,21 @@ public class CacheConfiguration {
             createCache(cm, com.kebunkarta.myapp.domain.User.class.getName());
             createCache(cm, com.kebunkarta.myapp.domain.Authority.class.getName());
             createCache(cm, com.kebunkarta.myapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.kebunkarta.myapp.domain.Unit.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Tax.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Contact.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Contact.class.getName() + ".suppliers");
+            createCache(cm, com.kebunkarta.myapp.domain.Contact.class.getName() + ".customers");
+            createCache(cm, com.kebunkarta.myapp.domain.Gudang.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Gudang.class.getName() + ".purchases");
+            createCache(cm, com.kebunkarta.myapp.domain.Gudang.class.getName() + ".sales");
+            createCache(cm, com.kebunkarta.myapp.domain.Barang.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Purchase.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Purchase.class.getName() + ".items");
+            createCache(cm, com.kebunkarta.myapp.domain.PurchaseItem.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Sales.class.getName());
+            createCache(cm, com.kebunkarta.myapp.domain.Sales.class.getName() + ".items");
+            createCache(cm, com.kebunkarta.myapp.domain.SalesItem.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

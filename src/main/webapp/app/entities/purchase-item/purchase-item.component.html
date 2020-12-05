@@ -1,0 +1,117 @@
+<div>
+    <h2 id="page-heading">
+        <span>Purchase Items</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-purchase-item" [routerLink]="['/purchase-item/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Purchase Item
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="purchaseItems?.length === 0">
+        <span>No purchaseItems found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="purchaseItems && purchaseItems.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="typeId"><span>Type Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="qty"><span>Qty</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="price"><span>Price</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="disc"><span>Disc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isDiscPercent"><span>Is Disc Percent</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tax"><span>Tax</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="note"><span>Note</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdBy"><span>Created By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="recordStatusId"><span>Record Status Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="catalogId"><span>Catalog</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="unitId"><span>Unit</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="taxId"><span>Tax</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="purchaseId"><span>Purchase</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let purchaseItem of purchaseItems ;trackBy: trackId">
+                    <td><a [routerLink]="['/purchase-item', purchaseItem.id, 'view']">{{ purchaseItem.id }}</a></td>
+                    <td>{{ purchaseItem.typeId }}</td>
+                    <td>{{ purchaseItem.qty }}</td>
+                    <td>{{ purchaseItem.price }}</td>
+                    <td>{{ purchaseItem.disc }}</td>
+                    <td>{{ purchaseItem.isDiscPercent }}</td>
+                    <td>{{ purchaseItem.tax }}</td>
+                    <td>{{ purchaseItem.note }}</td>
+                    <td>{{ purchaseItem.createdBy }}</td>
+                    <td>{{ purchaseItem.createdDate | date:'medium' }}</td>
+                    <td>{{ purchaseItem.lastModifiedBy }}</td>
+                    <td>{{ purchaseItem.lastModifiedDate | date:'medium' }}</td>
+                    <td>{{ purchaseItem.recordStatusId }}</td>
+                    <td>
+                        <div *ngIf="purchaseItem.catalogId">
+                            <a [routerLink]="['/barang', purchaseItem.catalogId , 'view']" >{{ purchaseItem.catalogId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="purchaseItem.unitId">
+                            <a [routerLink]="['/unit', purchaseItem.unitId , 'view']" >{{ purchaseItem.unitId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="purchaseItem.taxId">
+                            <a [routerLink]="['/tax', purchaseItem.taxId , 'view']" >{{ purchaseItem.taxId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="purchaseItem.purchaseId">
+                            <a [routerLink]="['/purchase', purchaseItem.purchaseId , 'view']" >{{ purchaseItem.purchaseId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/purchase-item', purchaseItem.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/purchase-item', purchaseItem.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(purchaseItem)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="purchaseItems && purchaseItems.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
