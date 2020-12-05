@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity SalesItem.
+    -->
+    <changeSet id="20201205155325-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="catalog_id"
+                                 baseTableName="sales_item"
+                                 constraintName="fk_sales_item_catalog_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="barang"/>
+
+        <addForeignKeyConstraint baseColumnNames="unit_id"
+                                 baseTableName="sales_item"
+                                 constraintName="fk_sales_item_unit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="unit"/>
+
+        <addForeignKeyConstraint baseColumnNames="tax_id"
+                                 baseTableName="sales_item"
+                                 constraintName="fk_sales_item_tax_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tax"/>
+
+        <addForeignKeyConstraint baseColumnNames="sales_id"
+                                 baseTableName="sales_item"
+                                 constraintName="fk_sales_item_sales_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sales"/>
+
+    </changeSet>
+</databaseChangeLog>

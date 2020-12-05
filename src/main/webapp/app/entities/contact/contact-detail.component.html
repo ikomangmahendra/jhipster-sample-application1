@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contact">
+            <h2><span>Contact</span> {{ contact.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Is Customer</span></dt>
+                <dd>
+                    <span>{{ contact.isCustomer }}</span>
+                </dd>
+                <dt><span>Is Supplier</span></dt>
+                <dd>
+                    <span>{{ contact.isSupplier }}</span>
+                </dd>
+                <dt><span>Code</span></dt>
+                <dd>
+                    <span>{{ contact.code }}</span>
+                </dd>
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{ contact.name }}</span>
+                </dd>
+                <dt><span>Phone 1</span></dt>
+                <dd>
+                    <span>{{ contact.phone1 }}</span>
+                </dd>
+                <dt><span>Phone 2</span></dt>
+                <dd>
+                    <span>{{ contact.phone2 }}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{ contact.email }}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{ contact.address }}</span>
+                </dd>
+                <dt><span>City</span></dt>
+                <dd>
+                    <span>{{ contact.city }}</span>
+                </dd>
+                <dt><span>Province</span></dt>
+                <dd>
+                    <span>{{ contact.province }}</span>
+                </dd>
+                <dt><span>Post Code</span></dt>
+                <dd>
+                    <span>{{ contact.postCode }}</span>
+                </dd>
+                <dt><span>Sales Name</span></dt>
+                <dd>
+                    <span>{{ contact.salesName }}</span>
+                </dd>
+                <dt><span>Created By</span></dt>
+                <dd>
+                    <span>{{ contact.createdBy }}</span>
+                </dd>
+                <dt><span>Created Date</span></dt>
+                <dd>
+                    <span>{{ contact.createdDate }}</span>
+                </dd>
+                <dt><span>Last Modified By</span></dt>
+                <dd>
+                    <span>{{ contact.lastModifiedBy }}</span>
+                </dd>
+                <dt><span>Last Modified Date</span></dt>
+                <dd>
+                    <span>{{ contact.lastModifiedDate }}</span>
+                </dd>
+                <dt><span>Record Status Id</span></dt>
+                <dd>
+                    <span>{{ contact.recordStatusId }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contact', contact.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
