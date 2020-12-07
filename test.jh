@@ -1,0 +1,141 @@
+entity Unit {
+	code String maxlength(5) required unique,
+    name String maxlength(30) required unique,
+    description String maxlength(50),
+    baseUnitStatus Boolean required,
+    createdBy String maxlength(50),
+    createdDate Instant,
+    lastModifiedBy String maxlength(50),
+    lastModifiedDate Instant,
+    recordStatusId Integer required
+}
+
+entity Tax {
+	code String maxlength(5) required unique,
+    name String maxlength(30) required unique,
+    taxRage BigDecimal,    
+    description String maxlength(50),
+    createdBy String maxlength(50),
+    createdDate Instant,
+    lastModifiedBy String maxlength(50),
+    lastModifiedDate Instant,
+    recordStatusId Integer required
+}
+
+entity Contact {
+	customerStatus Boolean,
+    supplierStatus Boolean,
+	code String maxlength(10) required unique,
+    name String maxlength(50) required,
+    phone1 String maxlength(20),
+    phone2 String maxlength(20),
+    email String maxlength(100),
+    address String maxlength(100),
+    city String maxlength(30),
+    province String maxlength(50),
+    postCode String maxlength(10),
+    salesName String maxlength(50),
+    createdBy String maxlength(50),
+    createdDate Instant,
+    lastModifiedBy String maxlength(50),
+    lastModifiedDate Instant,
+    recordStatusId Integer required
+}
+
+entity Gudang {
+	name String maxlength(50)
+}
+
+entity Barang {
+	name String maxlength(50)
+}
+
+entity Purchase {
+	typeId Integer required,
+    date LocalDate required,
+    refNo String maxlength(20) required unique,
+    description String maxlength(100),
+    otherCost BigDecimal,
+    subtotal BigDecimal required,
+    totalTax BigDecimal required,
+    disc BigDecimal,
+    discPercentStatus Boolean,
+    status String maxlength(2),
+    createdBy String maxlength(50),
+    createdDate Instant,
+    lastModifiedBy String maxlength(50),
+    lastModifiedDate Instant,
+    recordStatusId Integer required
+}
+
+entity PurchaseItem {
+	typeId Integer required,
+    qty BigDecimal required,
+    price BigDecimal required,
+    disc BigDecimal,
+    discPercentStatus Boolean,
+    tax BigDecimal required,
+    note String maxlength(20),
+    createdBy String maxlength(50),
+    createdDate Instant,
+    lastModifiedBy String maxlength(50),
+    lastModifiedDate Instant,
+    recordStatusId Integer required
+}
+
+entity Sales {
+	typeId Integer required,
+    date LocalDate required,
+    refNo String maxlength(20) required unique,
+    description String maxlength(100),
+    otherCost BigDecimal,
+    subtotal BigDecimal required,
+    totalTax BigDecimal required,
+    disc BigDecimal,
+    discPercentStatus Boolean,
+    status String maxlength(2),
+    createdBy String maxlength(50),
+    createdDate Instant,
+    lastModifiedBy String maxlength(50),
+    lastModifiedDate Instant,
+    recordStatusId Integer required
+}
+
+entity SalesItem {
+	typeId Integer required,
+    qty BigDecimal required,
+    price BigDecimal required,
+    disc BigDecimal,
+    isDiscPercent Boolean,
+    tax BigDecimal required,
+    note String maxlength(20),
+    createdBy String maxlength(50),
+    createdDate Instant,
+    lastModifiedBy String maxlength(50),
+    lastModifiedDate Instant,
+    recordStatusId Integer required
+}
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+
+relationship OneToMany {
+	Purchase{items} to PurchaseItem,
+    Sales{items} to SalesItem,
+    Contact{supplier} to Purchase,
+    Contact{customer} to Sales,
+    Gudang to Purchase{warehouse},
+    Gudang to Sales{warehouse}
+}
+
+relationship ManyToOne {
+	PurchaseItem{catalog} to Barang,
+    PurchaseItem{unit} to Unit,
+    PurchaseItem{tax} to Tax,
+	SalesItem{catalog} to Barang,
+    SalesItem{unit} to Unit,
+    SalesItem{tax} to Tax,
+}
+
+
