@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="purchaseItem">
+            <h2><span>Purchase Item</span> {{ purchaseItem.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Type Id</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.typeId }}</span>
+                </dd>
+                <dt><span>Qty</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.qty }}</span>
+                </dd>
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.price }}</span>
+                </dd>
+                <dt><span>Disc</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.disc }}</span>
+                </dd>
+                <dt><span>Disc Percent Status</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.discPercentStatus }}</span>
+                </dd>
+                <dt><span>Tax</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.tax }}</span>
+                </dd>
+                <dt><span>Note</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.note }}</span>
+                </dd>
+                <dt><span>Created By</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.createdBy }}</span>
+                </dd>
+                <dt><span>Created Date</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.createdDate }}</span>
+                </dd>
+                <dt><span>Last Modified By</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.lastModifiedBy }}</span>
+                </dd>
+                <dt><span>Last Modified Date</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.lastModifiedDate }}</span>
+                </dd>
+                <dt><span>Record Status Id</span></dt>
+                <dd>
+                    <span>{{ purchaseItem.recordStatusId }}</span>
+                </dd>
+                <dt><span>Catalog</span></dt>
+                <dd>
+                    <div *ngIf="purchaseItem.catalogId">
+                        <a [routerLink]="['/barang', purchaseItem.catalogId, 'view']">{{ purchaseItem.catalogId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Unit</span></dt>
+                <dd>
+                    <div *ngIf="purchaseItem.unitId">
+                        <a [routerLink]="['/unit', purchaseItem.unitId, 'view']">{{ purchaseItem.unitId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Tax</span></dt>
+                <dd>
+                    <div *ngIf="purchaseItem.taxId">
+                        <a [routerLink]="['/tax', purchaseItem.taxId, 'view']">{{ purchaseItem.taxId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Purchase</span></dt>
+                <dd>
+                    <div *ngIf="purchaseItem.purchaseId">
+                        <a [routerLink]="['/purchase', purchaseItem.purchaseId, 'view']">{{ purchaseItem.purchaseId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/purchase-item', purchaseItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
